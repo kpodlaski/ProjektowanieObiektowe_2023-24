@@ -1,0 +1,54 @@
+@startuml
+
+actor Passanger
+actor Driver 
+actor Controller 
+actor Bank 
+actor Person
+
+Driver -|> Person
+Controller -|> Person 
+
+
+usecase "Step in" as in 
+usecase "Step out" as out
+usecase "Start the bus" as _start
+usecase "Stop the bus" as _stop
+usecase "Drive the bus" as drive
+
+usecase "Tickets controll" as _control 
+usecase "Open doors" as open 
+usecase "Close doors" as close
+
+usecase "Buy ticket" as buy
+usecase "Buy E-ticket" as eticket 
+usecase "Buy paper ticket" as pticket
+usecase "Ticket validation" as validation 
+usecase "Payment authorization" as auth
+
+eticket -|> buy
+pticket -|> buy
+
+Passanger -- buy
+Passanger -- validation
+Passanger -- in
+Passanger -- out 
+Passanger -- _control
+
+Controller -- _control
+
+Driver -- _start
+Driver -- _stop
+Driver -- open
+Driver -- drive
+Driver -- close
+
+Bank -- auth
+
+open --> in :"<<allows>>"
+open --> out :"<<allows>>" 
+pticket --> validation : "<<requires>>"
+
+eticket --> auth : "<<invoke>>"
+
+@enduml
