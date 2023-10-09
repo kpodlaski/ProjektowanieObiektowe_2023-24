@@ -1,0 +1,57 @@
+@startuml
+
+actor "Pasażer" as Passanger
+actor "Kierowca" as Driver 
+actor "Kanar" as Controller 
+actor "System kart el." as Bank 
+actor "Osoba" as Person
+
+Driver -left-|> Person
+Controller -left-|> Person 
+Passanger --|> Person
+
+
+usecase "Wejście do pojazdu" as in 
+usecase "Wyjście z pojazdu" as out
+usecase "Start" as _start
+usecase "Stop" as _stop
+usecase "Jazda pojazdu" as drive
+
+usecase "Kontrola biletów" as _control 
+usecase "Otwieranie drzwi" as open 
+usecase "Zamyjanie drzwi" as close
+
+usecase "Kupowanie biletu" as buy
+usecase "K. biletu elektronicznego" as eticket 
+usecase "K. biletu kartkowego" as pticket
+usecase "Kasowanie biletu" as validation 
+
+
+eticket -|> buy
+pticket -|> buy
+
+Passanger -- buy
+Passanger -left- validation
+Passanger -- in
+Passanger -- out 
+Passanger -up- _control
+
+Controller -- _control
+Controller -- in
+
+Driver -- _start
+Driver -- _stop
+Driver -- open
+Driver -- drive
+Driver -- close
+
+open --> in :"<<allows>>"
+open --> out :"<<allows>>"
+
+_start --> close : "<<requires>>"
+_start --> drive : "<<invokes>>"
+pticket --> validation : "<<allowes>>"
+
+eticket --> Bank : "<<authorize>>"
+
+@enduml
