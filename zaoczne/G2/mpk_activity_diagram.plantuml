@@ -7,6 +7,11 @@ else
 --> [no] "Buy Ticket"
 --> "Validate ticket"
 --> sitdown
+' więcej niż 2 wyjścia z węzła decyzyjnego
+' else 
+' --> [long term type] "check status"
+' --> sitdown
+
 endif
 --> "Trip is coninued" as drive 
 --> "Next stop"
