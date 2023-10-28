@@ -31,15 +31,22 @@ class TicketMachine{
     sellTicket():Ticket
 }
 
+class Stop{}
+class Course {}
+
+
 Driver --|> Person
 Controller --|> Person
 Bus --|> Vehicle
 Vehicle "doors" *-- Door
 Driver -right- Vehicle
 Passenger "vehicle" -down--* "passengers" Vehicle
-Passenger *-- Ticket
+Passenger *-left- Ticket
 TicketMachine --* Vehicle
 TicketValidator --* Vehicle
 TicketMachine -up- Bank
 Controller --* Vehicle
+Course *-- Stop
+Vehicle -- Course
+Passenger "final_stop" -- Stop
 @enduml
