@@ -1,0 +1,24 @@
+@startuml
+
+(*) -> "Step In"
+--> if "Ticket is active" then 
+--> [yes] "Take place in the bus" as sitdown
+else 
+--> [no] "Buy Ticket"
+--> "Validate ticket"
+--> sitdown
+endif
+--> "Trip is coninued" as drive 
+--> "Next stop"
+--> if "Is this my final stop" then
+--> [no] drive
+else 
+-right--> [yes] "Step out"
+-right-> (*)
+endif 
+
+
+
+
+
+@enduml
