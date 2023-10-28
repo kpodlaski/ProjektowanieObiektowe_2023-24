@@ -1,0 +1,45 @@
+@startuml
+class Person 
+class Driver 
+class Controller 
+class Passenger 
+class Bank {
+    authorizePayment()
+}
+class Ticket{
+    validated: bool
+    timestamp
+} 
+class Vehicle{
+    'doors: Door[]
+    start()
+    stop()
+}
+class Bus 
+class Door{
+    -_open: bool
+    +open() 
+    +close()
+    +areOpen():bool
+}
+class TicketValidator{
+    'validate(t:Ticket)
+    validate(Ticket)
+}
+
+class TicketMachine{
+    sellTicket():Ticket
+}
+
+Driver --|> Person
+Controller --|> Person
+Bus --|> Vehicle
+Vehicle "doors" *-- Door
+Driver -right- Vehicle
+Passenger "vehicle" -down--* "passengers" Vehicle
+Passenger *-- Ticket
+TicketMachine --* Vehicle
+TicketValidator --* Vehicle
+TicketMachine -up- Bank
+Controller --* Vehicle
+@enduml

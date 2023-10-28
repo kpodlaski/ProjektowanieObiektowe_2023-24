@@ -1,0 +1,59 @@
+@startuml
+
+class Passanger {
+    email 
+    'tickets: Ticket[]
+}
+class Driver
+class Controller
+class Person {
+    'pesel
+    'name
+    'surname 
+    email
+}
+
+class Ticket{
+    validated :bool
+    type
+    timestamp
+}
+
+class ETicket
+
+class Bus{
+    start()
+    stop()
+}
+
+class Door{
+    -open : bool
+    +open()
+    +close()
+    +areClosed():bool
+}
+
+class TicketMachine
+class TicketValidator{
+    validate(t:Ticket)
+}
+
+class Bank {
+    authorizePayment()
+}
+
+
+Controller --* Bus
+Door --* Bus
+Passanger "tickets" *-- Ticket
+Driver --|> Person
+Controller --|> Person
+Driver -- Bus
+Passanger --* Bus
+Bus *-- TicketMachine
+Bus *-- TicketValidator
+ETicket --|>Ticket
+TicketMachine -- Bank
+
+' We need to add stops to the diagram!!!
+@enduml
