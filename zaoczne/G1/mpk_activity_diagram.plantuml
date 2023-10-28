@@ -1,0 +1,20 @@
+@startuml
+(*) --> "Step into a bus"
+--> if "ticket is valid" then
+--> [yes] "Take place in the bus" as takePlace
+else 
+--> [not valid] "Validate a ticket" as validate
+--> takePlace
+else 
+--> [no tickets] "Buy ticket"
+-->validate
+endif
+takePlace --> "Tavelling with the bus" as travelling
+--> "Next Stop"
+if "its a final stop" then 
+--> [yes] "step out" 
+-->(*)
+else 
+--> [no] travelling
+endif
+@enduml
