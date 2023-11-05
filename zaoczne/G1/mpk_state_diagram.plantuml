@@ -1,0 +1,44 @@
+@startuml
+
+state Passenger {
+    state "Ticket not validated" as newTicket
+    state "Ticket validated" as validTicket
+    state Bus
+}
+
+newTicket: validated = false
+newTicket: timestamp = -1
+
+validTicket: validated = true
+validTicket: timestamp >0 
+
+[*] -> newTicket
+newTicket -> validTicket : setTimestamp(date)
+
+
+state "Ticket Machine iddle" as iddleTM
+state "Ticket Machine selecting ticket type" as selectTM
+state "Ticket Machine selecting payment method" as paymentChoiceTM
+state "Ticket Machine wait for card" as cardTouchTM
+state "Ticket Machine wait payment authorization" as authTM
+state "Ticket Machine printing" as printTM
+
+[*] -down-> iddleTM
+iddleTM -right-> selectTM : user interacted
+selectTM -right-> paymentChoiceTM 
+paymentChoiceTM -down-> cardTouchTM : card payment
+cardTouchTM -left-> authTM : touched
+authTM -left-> printTM : success
+authTM -> paymentChoiceTM : failed
+printTM -up-> iddleTM
+
+
+
+
+
+
+
+
+
+
+@enduml

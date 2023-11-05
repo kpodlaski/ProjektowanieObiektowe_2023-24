@@ -9,7 +9,7 @@ else
 --> [no tickets] "Buy ticket"
 -->validate
 endif
-takePlace --> "Tavelling with the bus" as travelling
+takePlace --> "Travelling with the bus" as travelling
 --> "Next Stop"
 if "its a final stop" then 
 --> [yes] "step out" 

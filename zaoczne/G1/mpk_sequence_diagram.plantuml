@@ -1,0 +1,54 @@
+@startuml
+
+participant Passenger
+participant Bus 
+participant TicketValidator
+participant TicketManchine
+
+Passenger -> Passenger : stepIn(Bus)
+activate Passenger
+Passenger -> Passenger : hasActiveTicket()
+activate Passenger 
+return 
+alt no active tickets
+Passenger -> Bus : getTicketMachine()
+activate Bus
+return TicketManchine
+Passenger -> TicketManchine : buyTicket()
+activate TicketManchine
+TicketManchine -> Passenger :selectPaymentMethod and pay
+activate Passenger
+return payment
+return Ticket
+Passenger -> Bus : getTicketValidator()
+activate Bus
+return TicketValidator
+Passenger --> TicketValidator : validate(Ticket)
+activate TicketValidator
+TicketValidator -> Ticket:setTimestamp(date)
+activate Ticket
+return 
+return 
+else is active Ticket
+Passenger -> Bus : getTicketValidator()
+activate Bus
+return TicketValidator
+Passenger --> TicketValidator : validate(Ticket)
+activate TicketValidator
+TicketValidator -> Ticket:setTimestamp(date)
+activate Ticket
+return 
+return 
+end
+loop "is final stop"
+Passenger -> Bus: getToNextStop()
+activate Bus
+'Bus -> Doors : close()
+Bus -> Bus : drive()
+'Bus -> Doors : open()
+return stop
+end
+Passenger -> Passenger : stepOut()
+deactivate Passenger
+
+@enduml
