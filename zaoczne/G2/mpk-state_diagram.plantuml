@@ -1,0 +1,43 @@
+@startuml
+
+state Passenger {
+    state "Ticket init" as Ticket_init_state
+    state  "Ticket valid" as Ticket_validated
+    state Bus
+}
+
+
+state "Ticket Machine iddle" as iddleTMachine
+state "Ticket Machine ticket choice" as choosingTMachine
+state "Ticket Machine select payment" as selectPayTMachine
+state "Ticket Machine wait for card" as cardTouchTMachine
+state "Ticket Machine wait for authorization" as authWaitTMachine
+state "Ticket Machine print tickets" as printTMaichne
+
+
+
+Bus: actualStop 
+Bus -> Bus : nextStop()
+Bus : on nextStop open doors
+Bus : before nextStop close doors
+Ticket_init_state: validated=false
+Ticket_init_state: timestamp = -1
+Ticket_validated: validated=true
+Ticket_validated: timestamp >0
+[*] -up-> Ticket_init_state
+[*] -up-> Bus
+[*] -down-> iddleTMachine
+Ticket_init_state -> Ticket_validated : setTimestamp(time)
+
+
+
+iddleTMachine -down-> choosingTMachine
+choosingTMachine -right-> selectPayTMachine
+selectPayTMachine -down-> cardTouchTMachine
+cardTouchTMachine -left-> authWaitTMachine
+authWaitTMachine -left-> printTMaichne : success
+authWaitTMachine -up-> selectPayTMachine : failed
+printTMaichne -> iddleTMachine
+
+
+@enduml
