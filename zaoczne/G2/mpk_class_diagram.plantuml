@@ -17,6 +17,7 @@ class Ticket{
     validated :bool
     type
     timestamp
+    isActive():bool
 }
 
 class ETicket
