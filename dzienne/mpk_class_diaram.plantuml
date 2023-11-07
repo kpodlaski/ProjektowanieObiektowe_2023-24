@@ -1,0 +1,36 @@
+@startuml
+
+class Osoba{
+    id 
+    imie 
+    nazwisko 
+}
+class Kierowca
+class Kanar
+
+class Pojazd
+class Autobus
+class Tramwaj
+class "Pasażer" as pasazer
+class Bilet{
+    skasowany: bool
+}
+class Biletomat
+class Kasownik{
+    skasuj(Bilet)
+}
+class "System bankowy" as bank
+
+Kierowca --|> Osoba
+Kanar --|> Osoba
+Autobus --|> Pojazd
+Tramwaj --|> Pojazd
+
+Pojazd o-- Biletomat
+Pojazd o-- Kasownik
+Pojazd -- "pojazd" pasazer
+pasazer "bilety" o-- Bilet
+
+Kasownik -- bank
+
+@enduml
