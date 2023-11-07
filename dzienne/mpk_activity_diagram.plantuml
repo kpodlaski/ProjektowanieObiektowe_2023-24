@@ -1,0 +1,34 @@
+@startuml
+
+(*) ->"Wsiadnie do pojazdu"
+-> "Sprawdzamy posiadane bilety" 
+if "Nie mamy biletu" then
+->[tak] "kupujemy nowy bilet?"
+-> "kasujemy bilet" as kasowanie
+else 
+->[mamy bilet] kasowanie
+endif
+-down-> "Zajęcie miejsca w pojeździe"
+--> ===S1=== 
+--> "Obserwacja wsiadających\n pasażerów przez kierowcę" as obserwacja
+if "Czy można zamknąć drzwi" then
+-->[tak] ===S2===
+else 
+-->[nie] obserwacja
+===S1=== --> "Ruch pasażerów" as ruch
+if "czy ruch się zakończył" then 
+-->[tak] ===S2===
+else 
+-->[nie] ruch
+endif 
+===S2=== --> "Zamykanie drzwi" as zamykanieDrzwi
+--> "Przejazd do następnego przystanku"
+--> "Zatrzymanie pojazdu"
+--> "Otwieranie drzwi"
+if "Czy to przystanek docelowy" then 
+-->[tak] "Wysiadamy"
+--> (*)
+else 
+-->[nie] zamykanieDrzwi
+endif
+@enduml
