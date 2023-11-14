@@ -31,6 +31,7 @@ Pojazd o-- Kasownik
 Pojazd -- "pojazd" pasazer
 pasazer "bilety" o-- Bilet
 
-Kasownik -- bank
+Biletomat -- bank
+Kierowca -- Pojazd
 
 @enduml

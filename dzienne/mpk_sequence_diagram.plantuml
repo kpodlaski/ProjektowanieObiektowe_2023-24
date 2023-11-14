@@ -1,0 +1,29 @@
+@startuml
+
+participant Pasażer
+participant Pojazd
+participant Biletomat
+participant Kasownik
+
+activate Pasażer
+Pasażer -> Pojazd :getBiletomat()
+activate Pojazd
+return Biletomat
+Pasażer -> Biletomat: buyBilet(biletType)
+activate Biletomat
+Biletomat <-> Bilet : constructor()
+'komunikacja zakupu, autoryzacja w banku itp.
+return Bilet 
+Pasażer -> Pasażer : addBiletToList(Bilet)
+Pasażer -> Pojazd : getKasownik()
+activate Pojazd
+return Kasownik
+Pasażer -> Kasownik : skasuj(Bilet)
+activate Kasownik
+Kasownik -> Bilet : setTimestamp(time)
+activate Bilet
+return
+return 
+
+
+@enduml
