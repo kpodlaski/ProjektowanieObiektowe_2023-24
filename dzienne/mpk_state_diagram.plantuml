@@ -1,0 +1,35 @@
+@startuml
+state Bus{
+state Bezczynny : widok startowy
+state Bezczynny : czeka na interakcję
+
+state "Wybór biletu" as wybor: menu taryf
+
+state "Forma płatnosci" as paymentStart : menu form płatności
+
+state "Płatność" as payment : odczyt karty 
+
+state "Wydruk biletów" as wydruk : drukowanie biletu
+
+state autoryzacja : wysłano informację 
+state autoryzacja : oczekuję na potwierdzenie z banku
+}
+
+state "Centrala MPK" as center{
+    state "Rejestr biletów"
+}
+
+
+[*] -> Bezczynny
+Bezczynny --> wybor : dowolna interakcja
+wybor --> wybor : operacje na menu
+wybor --> paymentStart : kliknięto zapłać
+paymentStart --> payment : płatość kartą
+payment --> autoryzacja : karta odczytana
+payment --> paymentStart : bład odczytu karty
+autoryzacja --> wydruk : success
+autoryzacja --> paymentStart : failed
+wydruk --> Bezczynny
+paymentStart --> wybor : anulowanie
+wybor --> Bezczynny : brak interakcji w czasie 2 minut
+@enduml
