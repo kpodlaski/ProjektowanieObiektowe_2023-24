@@ -3,6 +3,8 @@ Mamy do napisania 2 gry planszowe (w języku obiektowym)
 - typu asteroids
 - typu Mario
 
+Musimy więc przygotować w miarę spójny projekt aby móc łatwo stworzyć obie gry wykorzystując dla gry Mario napisane wcześniej klasy/środowisko. 
+
 # Asteroids
 ## Obiekty: 
 - statek
