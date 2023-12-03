@@ -6,9 +6,9 @@ Mamy do napisania 2 gry planszowe (w języku obiektowym)
 # Asteroids
 ## Obiekty: 
 - statek
-    -- może się obracać
-    -- porusza się do przodu
-    -- może strzelać
+    - może się obracać
+    - porusza się do przodu
+    - może strzelać
 - asteroida
     -- porusza się do przodu
 
