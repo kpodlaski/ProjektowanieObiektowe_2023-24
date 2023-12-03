@@ -3,8 +3,8 @@ Mamy do napisania 2 gry planszowe (w języku obiektowym)
 - typu asteroids
 - typu Mario
 
-#Asteroids
-##Obiekty: 
+# Asteroids
+## Obiekty: 
 - statek
     -- może się obracać
     -- porusza się do przodu
@@ -12,13 +12,13 @@ Mamy do napisania 2 gry planszowe (w języku obiektowym)
 - asteroida
     -- porusza się do przodu
 
-##Zderzenia:
+## Zderzenia:
 - statek + meteoryt
 - meteoryt + meteoryt
 - pocisk + meteoryt
 - statek/meteoryt/pocisk + brzeg ekranu
 
-##Gry planszowe 2D mają pętlę gry:
+## Gry planszowe 2D mają pętlę gry:
 - aktualizacja pozycji elementów
 - sprawdzanie kolizji
 - rysowanie na ekranie
