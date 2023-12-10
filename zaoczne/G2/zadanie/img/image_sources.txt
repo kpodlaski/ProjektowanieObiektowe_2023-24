@@ -1,0 +1,3 @@
+The assets are taken from the internet
+ship.png : https://millionthvector.blogspot.com/p/free-sprites.html
+asteroid.png : https://www.pngegg.com/en/png-tpezt/download
