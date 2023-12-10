@@ -1,0 +1,79 @@
+@startuml
+class Game{
+
+startGame()
+gameLoop()
+sendEventToGameObject(event, target) 
+reactOnEvent(event)
+}
+
+
+class GameObject{
+update()
+reactOnEvent(event)
+render()
+destroy()
+}
+
+class Ship{
+destroy()
+}
+
+class Asteroid{
+destroy()
+}
+
+class Bullet{
+destroy()
+}
+
+'class Player{    } 
+
+class Renderer{
+    render(gameObject)
+}
+
+class GameObjectFactory{
+    create(params)
+}
+
+class ColisionDetector{
+    checkColision(gameObject, gameObject)
+}
+
+class Event{
+}
+
+
+DestroyEvent --|> Event
+ShootEvent --|> Event
+RotateShipEvent --|> Event
+ColisionWithWall --> Event
+
+class UserInterface{}
+
+Asteroid --|> GameObject
+Ship --|> GameObject 
+Bullet --|> GameObject 
+
+Game *-- GameObject :gameObjects
+Game -- Ship : player
+Game -- GameObjectFactory
+Game -- Renderer
+Game -- ColisionDetector
+UserInterface "game" -- Game 
+
+'Game -- Player : player
+'Player -- Ship : gameObject
+'Player --|> GameObject
+
+note "Use two step collision check" as N1
+ColisionDetector .. N1
+
+note "Use memento pattern" as N2
+GameObject .. N2
+
+
+note "reactOnEvent is invoked by User Interface " as N3
+Game::reactOnEvent .. N3
+@enduml
